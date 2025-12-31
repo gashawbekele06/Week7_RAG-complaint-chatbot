@@ -1,0 +1,12 @@
+pandas
+matplotlib
+seaborn
+langchain
+langchain-community
+langchain-chroma
+sentence-transformers
+chromadb
+gradio
+torch
+huggingface-hub
+scikit-learn
