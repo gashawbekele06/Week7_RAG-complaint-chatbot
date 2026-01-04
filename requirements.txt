@@ -10,3 +10,4 @@ chromadb
 sentence-transformers
 huggingface-hub
 scikit-learn
+pyarrow
