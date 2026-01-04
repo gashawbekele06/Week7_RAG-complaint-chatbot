@@ -15,6 +15,7 @@ from config import (
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 
+
 class CFPBDataProcessor:
     def __init__(self) -> None:
         self.filtered_df: pd.DataFrame | None = None
