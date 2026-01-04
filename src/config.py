@@ -1,6 +1,7 @@
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).parent.parent.resolve()
+VECTOR_STORE_DIR = PROJECT_ROOT / "vector_store"
 
 DATA_DIR = PROJECT_ROOT / "data"
 RAW_DIR = DATA_DIR / "raw"
