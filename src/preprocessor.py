@@ -7,7 +7,7 @@ import zipfile
 from pathlib import Path
 import warnings
 
-from config import (
+from .config import (
     RAW_CSV, ZIP_URL, ZIP_PATH, FILTERED_CSV, WORD_COUNT_PLOT,
     RAW_DIR, PROCESSED_DIR, NOTEBOOKS_DIR,
     RELEVANT_CFPB_PRODUCTS, PRODUCT_MAPPING
