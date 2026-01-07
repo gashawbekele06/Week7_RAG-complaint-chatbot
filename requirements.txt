@@ -3,11 +3,13 @@ matplotlib
 seaborn
 requests
 langchain
+langchain_core
 langchain-community
 langchain-text-splitters
 langchain-chroma
+langchain-huggingface
 chromadb
 sentence-transformers
-huggingface-hub
+huggingface_hub
 scikit-learn
 pyarrow
