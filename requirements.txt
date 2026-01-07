@@ -13,3 +13,6 @@ sentence-transformers
 huggingface_hub
 scikit-learn
 pyarrow
+langchain-ollama
+gradio 
+streamlit
