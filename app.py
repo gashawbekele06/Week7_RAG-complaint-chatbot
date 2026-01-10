@@ -1,4 +1,5 @@
 # app.py
+from src.rag_pipeline import CrediTrustRAG
 import sys
 from pathlib import Path
 import streamlit as st
@@ -11,7 +12,6 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 # Import your RAG system
-from src.rag_pipeline import CrediTrustRAG
 
 # Page config
 st.set_page_config(
@@ -34,6 +34,7 @@ if "messages" not in st.session_state:
 if "rag" not in st.session_state:
     st.session_state.rag = None
 
+
 def initialize_rag():
     if st.session_state.rag is None:
         with st.status("Initializing RAG system (this may take 5-15 minutes on first use)...") as status:
@@ -42,6 +43,7 @@ def initialize_rag():
             st.write("RAG system ready!")
             status.update(label="RAG system loaded!", state="complete")
     return st.session_state.rag
+
 
 # Display chat history
 for message in st.session_state.messages:
@@ -81,11 +83,13 @@ if prompt := st.chat_input("Your question (e.g., Why are customers unhappy with 
 
                 # Save to history
                 full_response = formatted_answer + sources_text
-                st.session_state.messages.append({"role": "assistant", "content": full_response})
+                st.session_state.messages.append(
+                    {"role": "assistant", "content": full_response})
 
             except Exception as e:
                 st.error(f"Error: {str(e)}")
-                st.session_state.messages.append({"role": "assistant", "content": f"Error: {str(e)}"})
+                st.session_state.messages.append(
+                    {"role": "assistant", "content": f"Error: {str(e)}"})
 
 # Clear button
 if st.button("Clear Conversation"):
