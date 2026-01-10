@@ -6,15 +6,17 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from pathlib import Path
-#from config import VECTOR_STORE_DIR
+# from config import VECTOR_STORE_DIR
 from src.config import VECTOR_STORE_DIR
 import textwrap  # <-- This was missing — now added!
+
 
 class CrediTrustRAG:
     def __init__(self, top_k: int = 5):
         # Embedding model (same as pre-built)
         self.embedding_model = "sentence-transformers/all-MiniLM-L6-v2"
-        self.embeddings = HuggingFaceEmbeddings(model_name=self.embedding_model)
+        self.embeddings = HuggingFaceEmbeddings(
+            model_name=self.embedding_model)
         self.top_k = top_k
 
         # Vector store path
@@ -28,7 +30,8 @@ class CrediTrustRAG:
             print("Full store not found. Using sample store from Task 2.")
             store_path = sample_store
         else:
-            raise FileNotFoundError("No vector store found. Run Task 2 or load_prebuilt.py first.")
+            raise FileNotFoundError(
+                "No vector store found. Run Task 2 or load_prebuilt.py first.")
 
         self.db = Chroma(
             persist_directory=str(store_path),
@@ -66,7 +69,8 @@ Answer:"""
 
         # RAG chain
         self.chain = (
-            {"context": self.retriever | format_docs, "question": RunnablePassthrough()}
+            {"context": self.retriever | format_docs,
+                "question": RunnablePassthrough()}
             | self.prompt
             | self.llm
             | StrOutputParser()
@@ -119,6 +123,7 @@ Answer:"""
 
         print("\nFinal Evaluation Table (Markdown):\n")
         print(table)
+
 
 if __name__ == "__main__":
     rag = CrediTrustRAG(top_k=5)
