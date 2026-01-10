@@ -26,10 +26,10 @@ rag-complaint-chatbot/
 │ ├── raw/ # Raw CFPB complaints.csv.zip
 │ ├── processed/ # filtered_complaints.csv (Task 1 output)
 │ └── complaint_embeddings.parquet # Pre-built embeddings (provided)
+├── notebooks/
 ├── vector_store/
 │ ├── sample_chroma/ # Task 2 sample vector store
 │ └── full_prebuilt/ # Task 3–4 full-scale vector store
-├── notebooks/
 │ ├── eda.ipynb # Task 1 EDA & preprocessing notebook
 │ └── eda_task2.ipynb # Task 2 vector store building notebook
 ├── src/
@@ -60,6 +60,7 @@ rag-complaint-chatbot/
 git clone https://github.com/your-username/rag-complaint-chatbot.git
 cd rag-complaint-chatbot
 
+### Create & Activate Virtual Environment
 pip install uv
 uv venv
 # Activate
@@ -70,13 +71,23 @@ source .venv/bin/activate   # Git Bash / Linux / macOS
 py -3.12 -m venv .venv
 .venv\Scripts\activate
 
+# Install Dependencies
 uv pip install -r requirements.txt
 or
 pip install -r requirements.txt
 
+# Data Preprocessing & EDA
 uv run src/preprocessor.py
 or
 python src/preprocessor.py
 
-uv run src/vector_store_builder.py
+#Load Full Pre-built Store & Run Evaluation
+# Load pre-built embeddings into Chroma (only once)
+python src/load_prebuilt.py
+
+# Run evaluation with Ollama (Llama 3.2)
+python src/rag_pipeline.py
+
+#Launch Interactive Streamlt UI
+streamlit run app.py
 ```
